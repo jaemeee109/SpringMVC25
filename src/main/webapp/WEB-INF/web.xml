@@ -5,7 +5,7 @@
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>/WEB-INF/spring/root-context.xml</param-value>
-	</context-param>
+	</context-param> <!-- 스프링이 관리할 xml 문서(bean: 객체관리 -> 히카리cp, 마이바티스, sql매퍼, dto 등 -->
 	
 	<!-- Creates the Spring Container shared by all Servlets and Filters -->
 	<listener>
@@ -19,7 +19,7 @@
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			<param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value>
-		</init-param>
+		</init-param> <!-- view를 담당하는 파일 위치 -->
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 		
