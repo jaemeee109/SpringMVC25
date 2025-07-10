@@ -24,7 +24,8 @@
 	</beans:bean>
 	
 	 <context:component-scan base-package="org.zerock.controller" /> 
-	<!-- 컨트롤러 역할을 담당하는 부분을 스캔하는 목적  -->
+	 <context:component-scan base-package="org.zerock.exception"/>
+<!-- 컨트롤러 역할을 담당하는 부분을 스캔하는 목적!! : 클래스 아이콘에 작은s 가 뜸  -->
 	
 	
 	

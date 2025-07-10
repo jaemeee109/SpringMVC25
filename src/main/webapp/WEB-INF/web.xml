@@ -20,6 +20,12 @@
 			<param-name>contextConfigLocation</param-name>
 			<param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value>
 		</init-param> <!-- view를 담당하는 파일 위치 -->
+		
+		<init-param>
+			<param-name>throwExceptionIfNoHandlerFound</param-name>
+			<param-value>true</param-value>
+		</init-param><!-- 톰캣이 404와 같은 예외처리를 하지말아라 -->
+		
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 		
