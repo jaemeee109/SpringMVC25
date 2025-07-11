@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd"> <!-- 마이바티스 기본코드 -->
+   
+ <mapper namespace="org.mbc.mapper.BoardMapper"><!-- 인터페이스 명 -->
+ 
+	  <!-- C DATAㄴ는 쿼리문의 특수문자가 아닌 글자처리용 -->
+	 <select id="getList2" resultType="org.mbc.domain.BoardVO">
+	 <!-- id는 메서드명				결과타입은 BoardVO 객체 -->
+	 
+	<![CDATA[
+	 SELECT * FROM tbl_board WHERE bno>0
+	 ]]>
+	 
+	 </select>
+ 
+	 <insert id="insert">
+		 <![CDATA[
+		 INSERT INTO tbl_board (bno, title, content,writer)
+		 	values (seq_board.nextval, #{title}, #{content},#{writer})
+		 ]]>
+	 </insert>
+	 
+	 
+	 <insert id="insertSelectKey"> <!-- 사전에 자동번호를 먼저 가지고 와라 그 값으로 bno를 넣겠다  -->
+	 
+		<selectKey keyProperty="bno" order="BEFORE" resultType="long">
+			select seq_board.nextval from dual
+		</selectKey><!-- insertSelectKey 메서드가 실행되면 사전에 시퀀스 키를 가져와라 -->
+		
+		 <![CDATA[
+		 INSERT INTO tbl_board (bno, title, content,writer)
+		 	values (#{bno}, #{title}, #{content},#{writer})
+		 ]]>
+		 
+		 
+	</insert>
+	
+	<select id="read" resultType="org.mbc.domain.BoardVO">
+	
+	 <![CDATA[
+		 SELECT * FROM tbl_board where bno = #{bno}
+		 ]]>
+
+	</select><!-- bno가 넘어오면 찾아서 객체로 넘겨 준다  -->
+	
+	
+	<delete id="delete">
+	
+	<![CDATA[
+		 DELETE FROM tbl_board where bno = #{bno}
+		 ]]>
+	
+	</delete>
+	
+	<update id="update">
+	
+	<![CDATA[
+		 UPDATE tbl_board SET title = #{title}, content = #{content}, writer = #{writer},
+		 updateDate = sysdate WHERE bno = #{bno}
+		 ]]>
+	
+	</update>
+
+	 
+	  </mapper>
